@@ -15,6 +15,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Install Qt
+      shell: bash
+      run: sudo add-apt-repository --yes ppa:beineri/opt-qt-5.15.0-focal 
+           sudo apt-get update -qq
+           sudo apt-get -y install qt515base
+      
     - uses: actions/checkout@v2
 
     - name: Create Build Environment
