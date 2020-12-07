@@ -16,16 +16,18 @@ jobs:
     
     strategy:
       matrix:
-        QT_VERSION:
-          - qt-5.15.2
-        QT_PPA:
-          - qt515
-      	
+        include:
+         - qt_version: qt-5.15.2
+           qt_ppa: qt515
+         - qt_version: qt-5.15.2
+           qt_ppa: qt515
 
     steps:
     - name: Add Qt repository
       shell: bash
-      run: sudo add-apt-repository --yes ppa:beineri/opt-${{ matrix.QT_VERSION }}-focal 
+      env:
+        QT_PPA: ${{ matrix.qt_ppa }}
+      run: sudo add-apt-repository --yes ppa:beineri/opt-${QT_PPA}-focal 
 
     - name: Update Qt repository
       shell: bash
@@ -33,7 +35,9 @@ jobs:
    
     - name: Install Qt repository
       shell: bash
-      run: sudo apt-get -y install ${{ matrix.QT_PPA }}base
+      env:
+        QT_VERSION: ${{ matrix.qt_version }}
+      run: sudo apt-get -y install ${QT_VERSION}base
       
     - uses: actions/checkout@v2
 
