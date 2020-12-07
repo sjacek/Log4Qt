@@ -17,11 +17,11 @@ jobs:
     steps:
     - name: Add Qt repository
       shell: bash
-      run: sudo add-apt-repository ppa:beineri/opt-qt-5.15.0-focal 
+      run: sudo add-apt-repository --yes ppa:beineri/opt-qt-5.15.2-focal 
 
     - name: Update Qt repository
       shell: bash
-      run: sudo apt-get update
+      run: sudo apt-get update -qq
    
     - name: Install Qt repository
       shell: bash
