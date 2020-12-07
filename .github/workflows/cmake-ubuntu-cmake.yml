@@ -5,7 +5,7 @@ on: [push]
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
-
+  
 jobs:
   build:
     # The CMake configure and build commands are platform agnostic and should work equally
@@ -17,12 +17,17 @@ jobs:
     strategy:
       matrix:
         include:
-         - qt_version: qt515
-           qt_ppa: qt-5.15.2
+         - qt_version: qt512
+           qt_ppa: qt-5.12.10
+         - qt_version: qt514
+           qt_ppa: qt-5.14.2
          - qt_version: qt515
            qt_ppa: qt-5.15.2
 
     steps:
+    - name: Install ninja
+      run: sudo apt-get install ninja-build
+          
     - name: Add Qt repository
       shell: bash
       env:
