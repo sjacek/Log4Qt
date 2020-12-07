@@ -13,11 +13,19 @@ jobs:
     # cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: ubuntu-20.04
+    
+    strategy:
+      matrix:
+        QT_VERSION:
+          - qt-5.15.2
+        QT_PPA:
+          - qt515
+      	
 
     steps:
     - name: Add Qt repository
       shell: bash
-      run: sudo add-apt-repository --yes ppa:beineri/opt-qt-5.15.2-focal 
+      run: sudo add-apt-repository --yes ppa:beineri/opt-${{ matrix.QT_VERSION }}-focal 
 
     - name: Update Qt repository
       shell: bash
@@ -25,7 +33,7 @@ jobs:
    
     - name: Install Qt repository
       shell: bash
-      run: sudo apt-get -y install qt515base
+      run: sudo apt-get -y install ${{ matrix.QT_PPA }}base
       
     - uses: actions/checkout@v2
 
