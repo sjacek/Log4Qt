@@ -17,10 +17,10 @@ jobs:
     strategy:
       matrix:
         include:
-         - qt_version: qt-5.15.2
-           qt_ppa: qt515
-         - qt_version: qt-5.15.2
-           qt_ppa: qt515
+         - qt_version: qt515
+           qt_ppa: qt-5.15.2
+         - qt_version: qt515
+           qt_ppa: qt-5.15.2
 
     steps:
     - name: Add Qt repository
