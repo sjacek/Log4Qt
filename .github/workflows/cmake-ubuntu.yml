@@ -15,12 +15,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install Qt
+    - name: Add Qt repository
       shell: bash
-      run: |
-           sudo add-apt-repository ppa:beineri/opt-qt-5.15.0-focal \
-           sudo apt-get update \
-           sudo apt-get -y install qt515base
+      run: sudo add-apt-repository ppa:beineri/opt-qt-5.15.0-focal 
+
+    - name: Update Qt repository
+      shell: bash
+      run: sudo apt-get update
+   
+    - name: Install Qt repository
+      shell: bash
+      run: sudo apt-get -y install qt515base
       
     - uses: actions/checkout@v2
 
